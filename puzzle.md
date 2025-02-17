@@ -280,10 +280,15 @@ void CGameMain::OnMouseClick(const int iMouseType, const float fMouseX, const fl
 
     if (iEmptyIndexX == -1 || iEmptyIndexY == -1) return;
 
-    // 交换方块位置
-    std::swap(m_iBlockState[iIndexY][iIndexX], m_iBlockState[iEmptyIndexY][iEmptyIndexX]);
+    // 交换方块位置（不使用 std::swap）
+    int tempState = m_iBlockState[iIndexY][iIndexX];
+    m_iBlockState[iIndexY][iIndexX] = m_iBlockState[iEmptyIndexY][iEmptyIndexX];
+    m_iBlockState[iEmptyIndexY][iEmptyIndexX] = tempState;
+
     int iOneIndex = XYToOneIndex(iEmptyIndexX, iEmptyIndexY);
-    std::swap(m_spBlock[iClickIndex], m_spBlock[iOneIndex]);
+    CBlock* tempBlock = m_spBlock[iClickIndex];
+    m_spBlock[iClickIndex] = m_spBlock[iOneIndex];
+    m_spBlock[iOneIndex] = tempBlock;
 
     // 移动方块至新位置
     MoveSpriteToBlock(m_spBlock[iOneIndex], iEmptyIndexX, iEmptyIndexY);
@@ -419,3 +424,6 @@ m_spGameBegin->SetSpriteVisible(1);
 #### 【实验总结】
 
 本实验实现了一个判断游戏胜利的函数，并在主循环中调用该函数以实时检测游戏状态。如果检测到胜利，则执行相应的游戏结束逻辑并重新开始游戏。
+
+
+
