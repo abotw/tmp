@@ -44,7 +44,9 @@
 
 ```cpp
 CSprite* m_spGameBegin; // "空格开始"精灵
+```
 
+```cpp
 void OnKeyDown(const int iKey, const int iAltPress, const int iShiftPress, const int iCtrlPress);
 ```
 
