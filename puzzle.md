@@ -22,9 +22,9 @@
 
 ## 2. 实验指南
 
-### 2.1 开始实验
+### 2.1 创建项目并导入模板
 
-### 2.2 单击空格键，开始游戏
+### 2.2 按下空格开始游戏
 
 #### 【实验内容】
 
@@ -33,7 +33,7 @@
 #### 【实验思路】
 
 - 系统会自动调用 `OnKeyDown` 函数响应键盘按下事件。
-- 代码实现位于 `main.cpp`，需要在 `OnKeyDown` 函数内检测空格键的按下状态。
+- 代码实现位于 `Main.cpp`，需要在 `OnKeyDown` 函数内检测空格键的按下状态。
 - 当空格键被按下时，修改 `m_iGameState` 变量，使游戏进入开始状态，并隐藏“空格开始”精灵。
 
 #### 【实验指导】
@@ -73,6 +73,17 @@ void CGameMain::OnKeyDown(const int iKey, const int iAltPress, const int iShiftP
 if (iKey == KEY_SPACE && m_iGameState == 0) {
     m_iGameState = 1; // 进入游戏状态
     m_spGameBegin->SetSpriteVisible(false); // 隐藏 "空格开始" 精灵
+}
+```
+
+---
+
+```cpp
+void CGameMain::OnKeyDown(const int iKey, const int iAltPress, const int iShiftPress, const int iCtrlPress) {
+  if (iKey == KEY_SPACE && m_iGameState == 0) {
+      m_iGameState = 1; // 进入游戏状态
+      m_spGameBegin->SetSpriteVisible(false); // 隐藏 "空格开始" 精灵
+  }
 }
 ```
 
